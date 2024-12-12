@@ -1,0 +1,344 @@
+0 verbose cli /opt/plesk/node/21/bin/node /var/www/vhosts/ynsocial.com/.nodenv/versions/21/bin/npm
+1 info using npm@10.5.0
+2 info using node@v21.7.3
+3 timing npm:load:whichnode Completed in 2ms
+4 timing config:load:defaults Completed in 2ms
+5 timing config:load:file:/opt/plesk/node/21/lib/node_modules/npm/npmrc Completed in 1ms
+6 timing config:load:builtin Completed in 1ms
+7 timing config:load:cli Completed in 2ms
+8 timing config:load:env Completed in 0ms
+9 timing config:load:file:/var/www/vhosts/ynsocial.com/httpdocs/.npmrc Completed in 0ms
+10 timing config:load:project Completed in 4ms
+11 timing config:load:file:/var/www/vhosts/ynsocial.com/.npmrc Completed in 0ms
+12 timing config:load:user Completed in 0ms
+13 timing config:load:file:/opt/plesk/node/21/etc/npmrc Completed in 0ms
+14 timing config:load:global Completed in 0ms
+15 timing config:load:setEnvs Completed in 1ms
+16 timing config:load Completed in 13ms
+17 timing npm:load:configload Completed in 13ms
+18 timing config:load:flatten Completed in 4ms
+19 timing npm:load:mkdirpcache Completed in 1ms
+20 timing npm:load:mkdirplogs Completed in 0ms
+21 verbose title npm i
+22 verbose argv "i"
+23 timing npm:load:setTitle Completed in 1ms
+24 timing npm:load:display Completed in 1ms
+25 verbose logfile logs-max:10 dir:/var/www/vhosts/ynsocial.com/.npm/_logs/2024-09-03T22_23_29_574Z-
+26 verbose logfile /var/www/vhosts/ynsocial.com/.npm/_logs/2024-09-03T22_23_29_574Z-debug-0.log
+27 timing npm:load:logFile Completed in 12ms
+28 timing npm:load:timers Completed in 0ms
+29 timing npm:load:configScope Completed in 0ms
+30 timing npm:load Completed in 56ms
+31 timing arborist:ctor Completed in 1ms
+32 silly logfile done cleaning log files
+33 timing idealTree:init Completed in 50ms
+34 timing idealTree:userRequests Completed in 0ms
+35 silly idealTree buildDeps
+36 timing idealTree:#root Completed in 1ms
+37 timing idealTree:buildDeps Completed in 1ms
+38 timing idealTree:fixDepFlags Completed in 0ms
+39 timing idealTree Completed in 57ms
+40 timing reify:loadTrees Completed in 66ms
+41 timing reify:diffTrees Completed in 3ms
+42 silly reify moves {}
+43 timing reify:retireShallow Completed in 2ms
+44 timing reify:createSparse Completed in 12ms
+45 timing reify:loadBundles Completed in 0ms
+46 silly audit bulk request {
+46 silly audit   '@esbuild/android-arm': [ '0.18.20' ],
+46 silly audit   '@esbuild/android-arm64': [ '0.18.20' ],
+46 silly audit   '@esbuild/android-x64': [ '0.18.20' ],
+46 silly audit   '@esbuild/darwin-arm64': [ '0.18.20' ],
+46 silly audit   '@esbuild/darwin-x64': [ '0.18.20' ],
+46 silly audit   '@esbuild/freebsd-arm64': [ '0.18.20' ],
+46 silly audit   '@esbuild/freebsd-x64': [ '0.18.20' ],
+46 silly audit   '@esbuild/linux-arm': [ '0.18.20' ],
+46 silly audit   '@esbuild/linux-arm64': [ '0.18.20' ],
+46 silly audit   '@esbuild/linux-ia32': [ '0.18.20' ],
+46 silly audit   '@esbuild/linux-loong64': [ '0.18.20' ],
+46 silly audit   '@esbuild/linux-mips64el': [ '0.18.20' ],
+46 silly audit   '@esbuild/linux-ppc64': [ '0.18.20' ],
+46 silly audit   '@esbuild/linux-riscv64': [ '0.18.20' ],
+46 silly audit   '@esbuild/linux-s390x': [ '0.18.20' ],
+46 silly audit   '@esbuild/linux-x64': [ '0.18.20' ],
+46 silly audit   '@esbuild/netbsd-x64': [ '0.18.20' ],
+46 silly audit   '@esbuild/openbsd-x64': [ '0.18.20' ],
+46 silly audit   '@esbuild/sunos-x64': [ '0.18.20' ],
+46 silly audit   '@esbuild/win32-arm64': [ '0.18.20' ],
+46 silly audit   '@esbuild/win32-ia32': [ '0.18.20' ],
+46 silly audit   '@esbuild/win32-x64': [ '0.18.20' ],
+46 silly audit   '@nodelib/fs.scandir': [ '2.1.5' ],
+46 silly audit   '@nodelib/fs.stat': [ '2.0.5' ],
+46 silly audit   '@nodelib/fs.walk': [ '1.2.8' ],
+46 silly audit   asynckit: [ '0.4.0' ],
+46 silly audit   axios: [ '1.7.7' ],
+46 silly audit   braces: [ '3.0.3' ],
+46 silly audit   'combined-stream': [ '1.0.8' ],
+46 silly audit   'delayed-stream': [ '1.0.0' ],
+46 silly audit   esbuild: [ '0.18.20' ],
+46 silly audit   'fast-glob': [ '3.3.2' ],
+46 silly audit   fastq: [ '1.17.1' ],
+46 silly audit   'fill-range': [ '7.1.1' ],
+46 silly audit   'follow-redirects': [ '1.15.8' ],
+46 silly audit   'form-data': [ '4.0.0' ],
+46 silly audit   fsevents: [ '2.3.3' ],
+46 silly audit   'glob-parent': [ '5.1.2' ],
+46 silly audit   'is-extglob': [ '2.1.1' ],
+46 silly audit   'is-glob': [ '4.0.3' ],
+46 silly audit   'is-number': [ '7.0.0' ],
+46 silly audit   'laravel-vite-plugin': [ '0.7.8' ],
+46 silly audit   lodash: [ '4.17.21' ],
+46 silly audit   merge2: [ '1.4.1' ],
+46 silly audit   micromatch: [ '4.0.8' ],
+46 silly audit   'mime-db': [ '1.52.0' ],
+46 silly audit   'mime-types': [ '2.1.35' ],
+46 silly audit   nanoid: [ '3.3.7' ],
+46 silly audit   picocolors: [ '1.1.0' ],
+46 silly audit   picomatch: [ '2.3.1' ],
+46 silly audit   postcss: [ '8.4.44' ],
+46 silly audit   'proxy-from-env': [ '1.1.0' ],
+46 silly audit   'queue-microtask': [ '1.2.3' ],
+46 silly audit   reusify: [ '1.0.4' ],
+46 silly audit   rollup: [ '3.29.4' ],
+46 silly audit   'run-parallel': [ '1.2.0' ],
+46 silly audit   'source-map-js': [ '1.2.0' ],
+46 silly audit   'to-regex-range': [ '5.0.1' ],
+46 silly audit   vite: [ '4.5.3' ],
+46 silly audit   'vite-plugin-copy': [ '0.1.6' ],
+46 silly audit   'vite-plugin-full-reload': [ '1.2.0' ]
+46 silly audit }
+47 verbose reify failed optional dependency /var/www/vhosts/ynsocial.com/httpdocs/node_modules/fsevents
+48 silly reify mark deleted [ '/var/www/vhosts/ynsocial.com/httpdocs/node_modules/fsevents' ]
+49 verbose reify failed optional dependency /var/www/vhosts/ynsocial.com/httpdocs/node_modules/@esbuild/win32-x64
+50 silly reify mark deleted [
+50 silly reify   '/var/www/vhosts/ynsocial.com/httpdocs/node_modules/@esbuild/win32-x64'
+50 silly reify ]
+51 verbose reify failed optional dependency /var/www/vhosts/ynsocial.com/httpdocs/node_modules/@esbuild/win32-ia32
+52 silly reify mark deleted [
+52 silly reify   '/var/www/vhosts/ynsocial.com/httpdocs/node_modules/@esbuild/win32-ia32'
+52 silly reify ]
+53 verbose reify failed optional dependency /var/www/vhosts/ynsocial.com/httpdocs/node_modules/@esbuild/win32-arm64
+54 silly reify mark deleted [
+54 silly reify   '/var/www/vhosts/ynsocial.com/httpdocs/node_modules/@esbuild/win32-arm64'
+54 silly reify ]
+55 verbose reify failed optional dependency /var/www/vhosts/ynsocial.com/httpdocs/node_modules/@esbuild/sunos-x64
+56 silly reify mark deleted [
+56 silly reify   '/var/www/vhosts/ynsocial.com/httpdocs/node_modules/@esbuild/sunos-x64'
+56 silly reify ]
+57 verbose reify failed optional dependency /var/www/vhosts/ynsocial.com/httpdocs/node_modules/@esbuild/openbsd-x64
+58 silly reify mark deleted [
+58 silly reify   '/var/www/vhosts/ynsocial.com/httpdocs/node_modules/@esbuild/openbsd-x64'
+58 silly reify ]
+59 verbose reify failed optional dependency /var/www/vhosts/ynsocial.com/httpdocs/node_modules/@esbuild/netbsd-x64
+60 silly reify mark deleted [
+60 silly reify   '/var/www/vhosts/ynsocial.com/httpdocs/node_modules/@esbuild/netbsd-x64'
+60 silly reify ]
+61 verbose reify failed optional dependency /var/www/vhosts/ynsocial.com/httpdocs/node_modules/@esbuild/linux-s390x
+62 silly reify mark deleted [
+62 silly reify   '/var/www/vhosts/ynsocial.com/httpdocs/node_modules/@esbuild/linux-s390x'
+62 silly reify ]
+63 verbose reify failed optional dependency /var/www/vhosts/ynsocial.com/httpdocs/node_modules/@esbuild/linux-riscv64
+64 silly reify mark deleted [
+64 silly reify   '/var/www/vhosts/ynsocial.com/httpdocs/node_modules/@esbuild/linux-riscv64'
+64 silly reify ]
+65 verbose reify failed optional dependency /var/www/vhosts/ynsocial.com/httpdocs/node_modules/@esbuild/linux-ppc64
+66 silly reify mark deleted [
+66 silly reify   '/var/www/vhosts/ynsocial.com/httpdocs/node_modules/@esbuild/linux-ppc64'
+66 silly reify ]
+67 verbose reify failed optional dependency /var/www/vhosts/ynsocial.com/httpdocs/node_modules/@esbuild/linux-mips64el
+68 silly reify mark deleted [
+68 silly reify   '/var/www/vhosts/ynsocial.com/httpdocs/node_modules/@esbuild/linux-mips64el'
+68 silly reify ]
+69 verbose reify failed optional dependency /var/www/vhosts/ynsocial.com/httpdocs/node_modules/@esbuild/linux-loong64
+70 silly reify mark deleted [
+70 silly reify   '/var/www/vhosts/ynsocial.com/httpdocs/node_modules/@esbuild/linux-loong64'
+70 silly reify ]
+71 verbose reify failed optional dependency /var/www/vhosts/ynsocial.com/httpdocs/node_modules/@esbuild/linux-ia32
+72 silly reify mark deleted [
+72 silly reify   '/var/www/vhosts/ynsocial.com/httpdocs/node_modules/@esbuild/linux-ia32'
+72 silly reify ]
+73 verbose reify failed optional dependency /var/www/vhosts/ynsocial.com/httpdocs/node_modules/@esbuild/linux-arm64
+74 silly reify mark deleted [
+74 silly reify   '/var/www/vhosts/ynsocial.com/httpdocs/node_modules/@esbuild/linux-arm64'
+74 silly reify ]
+75 verbose reify failed optional dependency /var/www/vhosts/ynsocial.com/httpdocs/node_modules/@esbuild/linux-arm
+76 silly reify mark deleted [
+76 silly reify   '/var/www/vhosts/ynsocial.com/httpdocs/node_modules/@esbuild/linux-arm'
+76 silly reify ]
+77 verbose reify failed optional dependency /var/www/vhosts/ynsocial.com/httpdocs/node_modules/@esbuild/freebsd-x64
+78 silly reify mark deleted [
+78 silly reify   '/var/www/vhosts/ynsocial.com/httpdocs/node_modules/@esbuild/freebsd-x64'
+78 silly reify ]
+79 verbose reify failed optional dependency /var/www/vhosts/ynsocial.com/httpdocs/node_modules/@esbuild/freebsd-arm64
+80 silly reify mark deleted [
+80 silly reify   '/var/www/vhosts/ynsocial.com/httpdocs/node_modules/@esbuild/freebsd-arm64'
+80 silly reify ]
+81 verbose reify failed optional dependency /var/www/vhosts/ynsocial.com/httpdocs/node_modules/@esbuild/darwin-x64
+82 silly reify mark deleted [
+82 silly reify   '/var/www/vhosts/ynsocial.com/httpdocs/node_modules/@esbuild/darwin-x64'
+82 silly reify ]
+83 verbose reify failed optional dependency /var/www/vhosts/ynsocial.com/httpdocs/node_modules/@esbuild/darwin-arm64
+84 silly reify mark deleted [
+84 silly reify   '/var/www/vhosts/ynsocial.com/httpdocs/node_modules/@esbuild/darwin-arm64'
+84 silly reify ]
+85 verbose reify failed optional dependency /var/www/vhosts/ynsocial.com/httpdocs/node_modules/@esbuild/android-x64
+86 silly reify mark deleted [
+86 silly reify   '/var/www/vhosts/ynsocial.com/httpdocs/node_modules/@esbuild/android-x64'
+86 silly reify ]
+87 verbose reify failed optional dependency /var/www/vhosts/ynsocial.com/httpdocs/node_modules/@esbuild/android-arm64
+88 silly reify mark deleted [
+88 silly reify   '/var/www/vhosts/ynsocial.com/httpdocs/node_modules/@esbuild/android-arm64'
+88 silly reify ]
+89 verbose reify failed optional dependency /var/www/vhosts/ynsocial.com/httpdocs/node_modules/@esbuild/android-arm
+90 silly reify mark deleted [
+90 silly reify   '/var/www/vhosts/ynsocial.com/httpdocs/node_modules/@esbuild/android-arm'
+90 silly reify ]
+91 timing reifyNode:node_modules/fsevents Completed in 93ms
+92 timing reifyNode:node_modules/@esbuild/win32-x64 Completed in 91ms
+93 timing reifyNode:node_modules/@esbuild/win32-ia32 Completed in 91ms
+94 timing reifyNode:node_modules/@esbuild/win32-arm64 Completed in 92ms
+95 timing reifyNode:node_modules/@esbuild/sunos-x64 Completed in 92ms
+96 timing reifyNode:node_modules/@esbuild/openbsd-x64 Completed in 92ms
+97 timing reifyNode:node_modules/@esbuild/netbsd-x64 Completed in 92ms
+98 timing reifyNode:node_modules/@esbuild/linux-s390x Completed in 91ms
+99 timing reifyNode:node_modules/@esbuild/linux-riscv64 Completed in 92ms
+100 timing reifyNode:node_modules/@esbuild/linux-ppc64 Completed in 92ms
+101 timing reifyNode:node_modules/@esbuild/linux-mips64el Completed in 92ms
+102 timing reifyNode:node_modules/@esbuild/linux-loong64 Completed in 92ms
+103 timing reifyNode:node_modules/@esbuild/linux-ia32 Completed in 92ms
+104 timing reifyNode:node_modules/@esbuild/linux-arm64 Completed in 91ms
+105 timing reifyNode:node_modules/@esbuild/linux-arm Completed in 91ms
+106 timing reifyNode:node_modules/@esbuild/freebsd-x64 Completed in 92ms
+107 timing reifyNode:node_modules/@esbuild/freebsd-arm64 Completed in 92ms
+108 timing reifyNode:node_modules/@esbuild/darwin-x64 Completed in 92ms
+109 timing reifyNode:node_modules/@esbuild/darwin-arm64 Completed in 92ms
+110 timing reifyNode:node_modules/@esbuild/android-x64 Completed in 92ms
+111 timing reifyNode:node_modules/@esbuild/android-arm64 Completed in 91ms
+112 timing reifyNode:node_modules/@esbuild/android-arm Completed in 91ms
+113 timing reifyNode:node_modules/run-parallel Completed in 466ms
+114 timing reifyNode:node_modules/merge2 Completed in 466ms
+115 timing reifyNode:node_modules/is-number Completed in 466ms
+116 timing reifyNode:node_modules/is-extglob Completed in 468ms
+117 timing reifyNode:node_modules/to-regex-range Completed in 474ms
+118 timing reifyNode:node_modules/queue-microtask Completed in 474ms
+119 timing reifyNode:node_modules/is-glob Completed in 474ms
+120 timing reifyNode:node_modules/glob-parent Completed in 473ms
+121 timing reifyNode:node_modules/fill-range Completed in 474ms
+122 timing reifyNode:node_modules/vite-plugin-copy Completed in 480ms
+123 timing reifyNode:node_modules/combined-stream Completed in 477ms
+124 timing reifyNode:node_modules/mime-types Completed in 482ms
+125 timing reifyNode:node_modules/delayed-stream Completed in 480ms
+126 timing reifyNode:node_modules/picocolors Completed in 485ms
+127 timing reifyNode:node_modules/micromatch Completed in 485ms
+128 timing reifyNode:node_modules/reusify Completed in 496ms
+129 timing reifyNode:node_modules/proxy-from-env Completed in 496ms
+130 timing reifyNode:node_modules/follow-redirects Completed in 495ms
+131 timing reifyNode:node_modules/vite-plugin-full-reload Completed in 500ms
+132 timing reifyNode:node_modules/form-data Completed in 498ms
+133 timing reifyNode:node_modules/laravel-vite-plugin Completed in 508ms
+134 timing reifyNode:node_modules/braces Completed in 506ms
+135 timing reifyNode:node_modules/picomatch Completed in 516ms
+136 timing reifyNode:node_modules/esbuild Completed in 514ms
+137 timing reifyNode:node_modules/mime-db Completed in 521ms
+138 timing reifyNode:node_modules/asynckit Completed in 521ms
+139 timing reifyNode:node_modules/fastq Completed in 525ms
+140 timing reifyNode:node_modules/@nodelib/fs.stat Completed in 527ms
+141 timing reifyNode:node_modules/source-map-js Completed in 538ms
+142 timing reifyNode:node_modules/nanoid Completed in 539ms
+143 timing reifyNode:node_modules/@nodelib/fs.scandir Completed in 537ms
+144 timing reifyNode:node_modules/@nodelib/fs.walk Completed in 544ms
+145 timing reifyNode:node_modules/postcss Completed in 583ms
+146 timing reifyNode:node_modules/fast-glob Completed in 584ms
+147 timing reifyNode:node_modules/rollup Completed in 661ms
+148 http fetch POST 200 https://registry.npmjs.org/-/npm/v1/security/advisories/bulk 700ms
+149 timing auditReport:getReport Completed in 705ms
+150 silly audit report {}
+151 timing auditReport:init Completed in 0ms
+152 timing reify:audit Completed in 706ms
+153 timing reifyNode:node_modules/vite Completed in 704ms
+154 timing reifyNode:node_modules/axios Completed in 709ms
+155 timing reifyNode:node_modules/@esbuild/linux-x64 Completed in 810ms
+156 timing reifyNode:node_modules/lodash Completed in 975ms
+157 timing reify:unpack Completed in 979ms
+158 timing reify:unretire Completed in 0ms
+159 timing build:queue Completed in 7ms
+160 timing build:link:node_modules/esbuild Completed in 5ms
+161 timing build:link:node_modules/nanoid Completed in 4ms
+162 timing build:link:node_modules/rollup Completed in 3ms
+163 timing build:link:node_modules/vite Completed in 3ms
+164 timing build:link Completed in 5ms
+165 info run esbuild@0.18.20 postinstall node_modules/esbuild node install.js
+166 info run esbuild@0.18.20 postinstall { code: 0, signal: null }
+167 timing build:run:postinstall:node_modules/esbuild Completed in 84ms
+168 timing build:run:postinstall Completed in 84ms
+169 timing build:deps Completed in 97ms
+170 timing build Completed in 98ms
+171 timing reify:build Completed in 99ms
+172 timing reify:trash Completed in 3ms
+173 timing reify:save Completed in 46ms
+174 timing reify Completed in 1253ms
+175 silly ADD node_modules/vite-plugin-full-reload
+176 silly ADD node_modules/vite-plugin-copy
+177 silly ADD node_modules/vite
+178 silly ADD node_modules/to-regex-range
+179 silly ADD node_modules/source-map-js
+180 silly ADD node_modules/run-parallel
+181 silly ADD node_modules/rollup
+182 silly ADD node_modules/reusify
+183 silly ADD node_modules/queue-microtask
+184 silly ADD node_modules/proxy-from-env
+185 silly ADD node_modules/postcss
+186 silly ADD node_modules/picomatch
+187 silly ADD node_modules/picocolors
+188 silly ADD node_modules/nanoid
+189 silly ADD node_modules/mime-types
+190 silly ADD node_modules/mime-db
+191 silly ADD node_modules/micromatch
+192 silly ADD node_modules/merge2
+193 silly ADD node_modules/lodash
+194 silly ADD node_modules/laravel-vite-plugin
+195 silly ADD node_modules/is-number
+196 silly ADD node_modules/is-glob
+197 silly ADD node_modules/is-extglob
+198 silly ADD node_modules/glob-parent
+199 silly ADD
+200 silly ADD node_modules/form-data
+201 silly ADD node_modules/follow-redirects
+202 silly ADD node_modules/fill-range
+203 silly ADD node_modules/fastq
+204 silly ADD node_modules/fast-glob
+205 silly ADD node_modules/esbuild
+206 silly ADD node_modules/delayed-stream
+207 silly ADD node_modules/combined-stream
+208 silly ADD node_modules/braces
+209 silly ADD node_modules/axios
+210 silly ADD node_modules/asynckit
+211 silly ADD node_modules/@nodelib/fs.walk
+212 silly ADD node_modules/@nodelib/fs.stat
+213 silly ADD node_modules/@nodelib/fs.scandir
+214 silly ADD
+215 silly ADD
+216 silly ADD
+217 silly ADD
+218 silly ADD
+219 silly ADD
+220 silly ADD node_modules/@esbuild/linux-x64
+221 silly ADD
+222 silly ADD
+223 silly ADD
+224 silly ADD
+225 silly ADD
+226 silly ADD
+227 silly ADD
+228 silly ADD
+229 silly ADD
+230 silly ADD
+231 silly ADD
+232 silly ADD
+233 silly ADD
+234 silly ADD
+235 silly ADD
+236 timing command:i Completed in 1271ms
+237 verbose exit 0
+238 timing npm Completed in 1554ms
+239 info ok

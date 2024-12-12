@@ -1,0 +1,123 @@
+/* Base styles */
+:root {
+    --color-primary: #8c6144;
+    --color-secondary: #171717;
+    --color-text: #444444;
+    --color-background: #ffffff;
+}
+
+/* Typography */
+body {
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--color-text);
+    background-color: var(--color-background);
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Six Caps', sans-serif;
+    line-height: 1.2;
+    color: var(--color-secondary);
+}
+
+/* Header */
+.site-header {
+    background: var(--color-background);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.navbar-brand {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.nav-link {
+    color: var(--color-text);
+    transition: color 0.3s ease;
+}
+
+.nav-link:hover,
+.nav-link.active {
+    color: var(--color-primary);
+}
+
+/* Footer */
+.site-footer {
+    background: var(--color-secondary);
+    color: var(--color-background);
+    padding: var(--footer-padding) 0;
+}
+
+.footer-widget {
+    margin-bottom: 30px;
+}
+
+.footer-widget h4 {
+    color: var(--color-background);
+    margin-bottom: 20px;
+}
+
+.footer-links {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-links a {
+    color: var(--color-background);
+    text-decoration: none;
+    transition: opacity 0.3s ease;
+}
+
+.footer-links a:hover {
+    opacity: 0.8;
+}
+
+.social-icons {
+    display: flex;
+    gap: 10px;
+}
+
+.social-icon {
+    color: var(--color-background);
+    font-size: 1.2rem;
+    transition: opacity 0.3s ease;
+}
+
+.social-icon:hover {
+    opacity: 0.8;
+}
+
+/* Back to Top Button */
+.back-to-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: var(--color-primary);
+    color: var(--color-background);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.back-to-top.visible {
+    opacity: 1;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .navbar-collapse {
+        background: var(--color-background);
+        padding: 1rem;
+    }
+    
+    .social-icons {
+        margin-top: 1rem;
+    }
+}

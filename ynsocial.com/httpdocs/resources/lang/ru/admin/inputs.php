@@ -1,0 +1,32 @@
+<?php
+
+return [
+    'page_title' => 'Sayfa Adı',
+    'enter_page_title' => 'Sayfa Adı Girin',
+    'content' => 'İçerik',
+    'slug' => 'SEO URL',
+    'enter_slug' => 'Seo Url Girin',
+    'seo_title' => 'SEO İçerikleri',
+    'meta_title' => 'Meta Başlık',
+    'enter_meta_title' => 'Meta Başlık Girin',
+    'meta_description' => 'Meta Açıklama',
+    'enter_meta_description' => 'Meta Açıklama Girin',
+    'create_button' => 'Oluştur',
+    'update_button' => 'Güncelle',
+    'featured_image' => 'Öne Çıkan Görsel',
+    'status' => 'Durum',
+    'status_active' => 'Aktif',
+    'status_passive' => 'Pasif',
+    'indexable' => 'Arama Motorları İndexlesin mi?',
+    'indexable_yes' => 'Evet',
+    'indexable_no' => 'Hayır',
+    'template' => 'Özel Şablon',
+    'controller' => 'Özel Kontrolcü',
+    'language' => 'Çevirisini yapmak istediğiniz dili seçin.',
+    'select' => 'Seçin',
+    'alias' => 'Modül Tipi',
+    'method' => 'Modül Kontrolcüsü',
+    'source' => 'Yönlendirilecek URL',
+    'target' => 'Hedef URL',
+
+];

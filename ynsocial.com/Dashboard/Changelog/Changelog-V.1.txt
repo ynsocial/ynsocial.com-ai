@@ -1,0 +1,77 @@
+Project Name: Xintra – Bootstrap 5 Premium Admin & Dashboard Template
+
+Version : V.1
+
+Updated-date:  31-JULY-2024
+ 
+Updates :-
+
+1) Added a New Gulp Base Template.
+2) Some Plugins are updated.
+3) jsvectormap js file is updated.
+4) Updated script links.
+5) package.json file is updated.
+6) Documentation is updated.
+
+
+**********************************************************************************************************************************************
+	
+----------------------------------------------------------------------
+1) Added a New Gulp Base Template.
+----------------------------------------------------------------------
+	Added a new base template using Gulp, providing an alternative to the existing esbuild base template. This new template includes a comprehensive setup for Gulp tasks and configurations		
+
+----------------------------------------------------------------------
+2) Some Plugins are updated.
+----------------------------------------------------------------------
+	The following plugins in the esbuild base template have been updated:
+
+	For dist users:-  Replace the plugin folders Rootpath: dist/assets/libs/* with the updated versions: 
+
+	1.@simonwep
+	2.@yaireo/dragsort
+	3.chart.js
+	4.echarts
+	5.filepond
+	6.fullcalendar
+	7.glightbox
+	8.jsvectormap
+	9.nouislider
+	10.quill
+	11.simplebar
+	12.sweetalert2
+	13.swiper
+
+	For src users:- Run the esbuild command "npm run dev" to update plugins.
+
+----------------------------------------------------------------------
+3) jsvectormap js file is updated.
+----------------------------------------------------------------------
+	jsvectormap js file is updated, so please replace jsvectormap.js file (Rootpath: ../assets/js/jsvectormap.js)
+
+----------------------------------------------------------------------
+4) Updated script links.
+----------------------------------------------------------------------
+	Updated the links for jsvectormap and Quill editor scripts. Please update the links in your HTML pages accordingly:
+
+	<!-- Jsvector Maps -->
+	<link rel="stylesheet" href="../assets/libs/jsvectormap/jsvectormap.min.css">
+
+	 <!-- JSVector Maps JS -->
+    <script src="../assets/libs/jsvectormap/jsvectormap.min.js"></script>
+
+	<!-- Quill Editor JS -->
+    <script src="../assets/libs/quill/quill.js"></script>
+
+----------------------------------------------------------------------
+5) package.json file is updated.
+----------------------------------------------------------------------
+	The package.json file has been updated. Please replace the existing file.
+
+----------------------------------------------------------------------
+6) Documentation is updated.
+----------------------------------------------------------------------
+	Documentation is updated. Please go through it.
+
+Thank you,
+@spruko.
