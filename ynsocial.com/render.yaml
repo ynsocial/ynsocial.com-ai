@@ -2,9 +2,11 @@ services:
   - type: web
     name: ynsocial
     env: php
-    rootDirectory: httpdocs
+    rootDirectory: ynsocial.com/httpdocs
     buildCommand: |
-      composer update
+      composer config --no-plugins allow-plugins.pestphp/pest-plugin true
+      composer update --no-scripts
+      composer require jenssegers/mongodb:^3.9 --update-with-dependencies
       composer install --no-dev --optimize-autoloader
       composer dump-autoload --optimize
       npm install
