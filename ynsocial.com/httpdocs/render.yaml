@@ -2,7 +2,7 @@ services:
   - type: web
     name: ynsocial
     env: php
-    rootDirectory: httpdocs
+    rootDirectory: ynsocial.com/httpdocs
     buildCommand: |
       composer install --no-dev --optimize-autoloader
       npm install
