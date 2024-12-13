@@ -34,4 +34,4 @@ services:
         value: sync
       - key: FILESYSTEM_DISK
         value: local
-    autoDeploy: true
+    autoDeploy: true 
