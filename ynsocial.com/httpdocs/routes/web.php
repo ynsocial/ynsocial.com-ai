@@ -71,3 +71,7 @@ Route::view('/terms-of-service', 'montoya.terms')->name('terms');
 Route::fallback(function () {
     return response()->view('montoya.errors.404', [], 404);
 });
+
+Route::get('/health', function () {
+    return response()->json(['status' => 'ok']);
+});

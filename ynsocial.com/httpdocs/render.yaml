@@ -2,12 +2,7 @@ services:
   - type: web
     name: ynsocial
     env: php
-    rootDirectory: ynsocial.com/httpdocs
-    buildCommand: |
-      composer install --no-dev --optimize-autoloader
-      npm install
-      npm run build
-      php artisan storage:link
+    buildCommand: composer install && npm install && npm run build
     startCommand: |
       php artisan migrate --force
       php artisan config:cache
@@ -29,13 +24,4 @@ services:
       - key: MONGODB_URI
         value: mongodb+srv://ynsocial:Graf2021@ynsocial.mp9eb.mongodb.net/ynsocial?retryWrites=true&w=majority&appName=ynsocial
       - key: MONGODB_DATABASE
-        value: ynsocial
-      - key: SESSION_DRIVER
-        value: cookie
-      - key: CACHE_DRIVER
-        value: file
-      - key: QUEUE_CONNECTION
-        value: sync
-      - key: FILESYSTEM_DISK
-        value: local
-    autoDeploy: true
+        value: ynsocial 
