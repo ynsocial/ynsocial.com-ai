@@ -4,7 +4,8 @@ services:
     env: php
     rootDirectory: httpdocs
     buildCommand: |
-      composer update
+      rm -f composer.lock
+      composer require jenssegers/mongodb
       composer install --no-dev --optimize-autoloader
       composer dump-autoload --optimize
       npm install
