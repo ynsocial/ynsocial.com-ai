@@ -1,1 +1,46 @@
- 
+# Laravel
+ynsocial.com/httpdocs/node_modules
+ynsocial.com/httpdocs/public/hot
+ynsocial.com/httpdocs/public/storage
+ynsocial.com/httpdocs/storage/*.key
+ynsocial.com/httpdocs/vendor
+ynsocial.com/httpdocs/.env
+ynsocial.com/httpdocs/.env.backup
+ynsocial.com/httpdocs/.phpunit.result.cache
+ynsocial.com/httpdocs/docker-compose.override.yml
+ynsocial.com/httpdocs/Homestead.json
+ynsocial.com/httpdocs/Homestead.yaml
+ynsocial.com/httpdocs/npm-debug.log
+ynsocial.com/httpdocs/yarn-error.log
+
+# MacOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# IDE
+.idea
+.vscode
+*.sublime-project
+*.sublime-workspace
+
+# Environment
+.env
+.env.backup
+
+# Dependencies
+/vendor/
+/node_modules/
+composer.phar
+
+# Misc
+.composer/
+.npm/
+.nvm/
+.cache/
+.config/
+.local/
+.nodenv/
+.phpenv/
+logs/
+*.log 
