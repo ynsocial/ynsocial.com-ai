@@ -5,6 +5,8 @@ services:
     plan: free
     rootDirectory: ynsocial.com/httpdocs
     buildCommand: |
+      curl -sS https://getcomposer.org/installer | php
+      mv composer.phar /usr/local/bin/composer
       rm -f composer.lock
       composer install --optimize-autoloader --no-dev
       composer require jenssegers/mongodb:^3.9 --no-interaction --no-progress
