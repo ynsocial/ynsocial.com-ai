@@ -3,139 +3,171 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\BlogPost;
+use App\Models\Blog;
 use App\Models\Category;
 use App\Models\Tag;
 use Illuminate\Http\Request;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\View\View;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Validation\Rule;
 
 class BlogController extends Controller
 {
-    public function index()
+    /**
+     * Display a listing of blog posts.
+     */
+    public function index(): View
     {
-        $posts = BlogPost::with(['category', 'author', 'tags'])
+        $posts = Blog::with(['category', 'tags'])
             ->latest()
             ->paginate(10);
 
         return view('admin.blog.index', compact('posts'));
     }
 
-    public function create()
+    /**
+     * Show the form for creating a new blog post.
+     */
+    public function create(): View
     {
-        $categories = Category::where('type', 'blog')->get();
-        $tags = Tag::where('type', 'blog')->get();
-        return view('admin.blog.form', compact('categories', 'tags'));
+        $categories = Category::where('type', 'blog')->orderBy('name')->get();
+        $tags = Tag::orderBy('name')->get();
+        return view('admin.blog.create', compact('categories', 'tags'));
     }
 
-    public function store(Request $request)
+    /**
+     * Store a newly created blog post.
+     */
+    public function store(Request $request): RedirectResponse
     {
         $validated = $request->validate([
-            'title' => 'required|max:255',
-            'content' => 'required',
+            'title' => 'required|string|max:255',
+            'slug' => 'nullable|string|max:255|unique:blogs',
+            'excerpt' => 'required|string|max:500',
+            'content' => 'required|string',
             'category_id' => 'required|exists:categories,id',
-            'excerpt' => 'nullable|max:500',
-            'featured_image' => 'nullable|image|max:2048',
-            'meta_title' => 'nullable|max:255',
-            'meta_description' => 'nullable|max:500',
-            'status' => 'required|in:draft,published',
             'tags' => 'nullable|array',
             'tags.*' => 'exists:tags,id',
+            'image' => 'required|image|max:2048',
             'published_at' => 'nullable|date',
+            'featured' => 'boolean',
+            'meta_title' => 'nullable|string|max:255',
+            'meta_description' => 'nullable|string',
+            'meta_keywords' => 'nullable|string|max:255',
         ]);
 
-        $validated['slug'] = Str::slug($request->title);
-        $validated['user_id'] = auth()->id();
+        // Handle slug
+        $validated['slug'] = $validated['slug'] ?? Str::slug($validated['title']);
 
-        if ($request->hasFile('featured_image')) {
-            $validated['featured_image'] = $request->file('featured_image')
-                ->store('blog', 'public');
+        // Handle image upload
+        if ($request->hasFile('image')) {
+            $validated['image'] = $request->file('image')->store('blog', 'public');
         }
 
-        $post = BlogPost::create($validated);
+        // Create post
+        $post = Blog::create($validated);
 
-        if ($request->has('tags')) {
-            $post->tags()->sync($request->tags);
+        // Sync tags
+        if (isset($validated['tags'])) {
+            $post->tags()->sync($validated['tags']);
         }
 
-        return redirect()->route('admin.blog.index')
+        return redirect()
+            ->route('admin.blog.index')
             ->with('success', 'Blog post created successfully.');
     }
 
-    public function edit(BlogPost $blog)
+    /**
+     * Show the form for editing the specified blog post.
+     */
+    public function edit(Blog $post): View
     {
-        $categories = Category::where('type', 'blog')->get();
-        $tags = Tag::where('type', 'blog')->get();
-        return view('admin.blog.form', compact('blog', 'categories', 'tags'));
+        $categories = Category::where('type', 'blog')->orderBy('name')->get();
+        $tags = Tag::orderBy('name')->get();
+        return view('admin.blog.edit', compact('post', 'categories', 'tags'));
     }
 
-    public function update(Request $request, BlogPost $blog)
+    /**
+     * Update the specified blog post.
+     */
+    public function update(Request $request, Blog $post): RedirectResponse
     {
         $validated = $request->validate([
-            'title' => 'required|max:255',
-            'content' => 'required',
+            'title' => 'required|string|max:255',
+            'slug' => ['nullable', 'string', 'max:255', Rule::unique('blogs')->ignore($post)],
+            'excerpt' => 'required|string|max:500',
+            'content' => 'required|string',
             'category_id' => 'required|exists:categories,id',
-            'excerpt' => 'nullable|max:500',
-            'featured_image' => 'nullable|image|max:2048',
-            'meta_title' => 'nullable|max:255',
-            'meta_description' => 'nullable|max:500',
-            'status' => 'required|in:draft,published',
             'tags' => 'nullable|array',
             'tags.*' => 'exists:tags,id',
+            'image' => 'nullable|image|max:2048',
             'published_at' => 'nullable|date',
+            'featured' => 'boolean',
+            'meta_title' => 'nullable|string|max:255',
+            'meta_description' => 'nullable|string',
+            'meta_keywords' => 'nullable|string|max:255',
         ]);
 
-        if ($request->hasFile('featured_image')) {
-            $validated['featured_image'] = $request->file('featured_image')
-                ->store('blog', 'public');
+        // Handle slug
+        $validated['slug'] = $validated['slug'] ?? Str::slug($validated['title']);
+
+        // Handle image upload
+        if ($request->hasFile('image')) {
+            // Delete old image
+            if ($post->image) {
+                Storage::disk('public')->delete($post->image);
+            }
+            $validated['image'] = $request->file('image')->store('blog', 'public');
         }
 
-        $blog->update($validated);
+        // Update post
+        $post->update($validated);
 
-        if ($request->has('tags')) {
-            $blog->tags()->sync($request->tags);
+        // Sync tags
+        if (isset($validated['tags'])) {
+            $post->tags()->sync($validated['tags']);
         }
 
-        return redirect()->route('admin.blog.index')
+        return redirect()
+            ->route('admin.blog.index')
             ->with('success', 'Blog post updated successfully.');
     }
 
-    public function destroy(BlogPost $blog)
+    /**
+     * Remove the specified blog post.
+     */
+    public function destroy(Blog $post): RedirectResponse
     {
-        $blog->delete();
-        return redirect()->route('admin.blog.index')
+        // Delete image
+        if ($post->image) {
+            Storage::disk('public')->delete($post->image);
+        }
+
+        // Delete post (tags will be automatically detached)
+        $post->delete();
+
+        return redirect()
+            ->route('admin.blog.index')
             ->with('success', 'Blog post deleted successfully.');
     }
 
-    public function categories()
+    /**
+     * Generate SEO-friendly slug from title.
+     */
+    public function generateSlug(Request $request): RedirectResponse
     {
-        $categories = Category::where('type', 'blog')
-            ->withCount('blogPosts')
-            ->get();
+        $request->validate(['title' => 'required|string|max:255']);
+        
+        $slug = Str::slug($request->title);
+        $originalSlug = $slug;
+        $count = 1;
 
-        return view('admin.blog.categories.index', compact('categories'));
-    }
-
-    public function tags()
-    {
-        $tags = Tag::where('type', 'blog')
-            ->withCount('blogPosts')
-            ->get();
-
-        return view('admin.blog.tags.index', compact('tags'));
-    }
-
-    public function reorder(Request $request)
-    {
-        $request->validate([
-            'items' => 'required|array',
-            'items.*.id' => 'required|exists:blog_posts,id',
-            'items.*.order' => 'required|integer|min:0',
-        ]);
-
-        foreach ($request->items as $item) {
-            BlogPost::where('id', $item['id'])->update(['order' => $item['order']]);
+        while (Blog::where('slug', $slug)->exists()) {
+            $slug = $originalSlug . '-' . $count++;
         }
 
-        return response()->json(['message' => 'Posts reordered successfully.']);
+        return response()->json(['slug' => $slug]);
     }
 } 

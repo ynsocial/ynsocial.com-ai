@@ -4,9 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class Portfolio extends Model
+class Service extends Model
 {
     use HasFactory;
 
@@ -15,11 +14,8 @@ class Portfolio extends Model
         'slug',
         'description',
         'content',
+        'icon',
         'image',
-        'category_id',
-        'client',
-        'completion_date',
-        'website',
         'featured',
         'active',
         'order',
@@ -31,19 +27,10 @@ class Portfolio extends Model
     protected $casts = [
         'featured' => 'boolean',
         'active' => 'boolean',
-        'completion_date' => 'date',
     ];
 
     /**
-     * Get the category that owns the portfolio.
-     */
-    public function category(): BelongsTo
-    {
-        return $this->belongsTo(PortfolioCategory::class);
-    }
-
-    /**
-     * Scope a query to only include active portfolios.
+     * Scope a query to only include active services.
      */
     public function scopeActive($query)
     {
@@ -51,7 +38,7 @@ class Portfolio extends Model
     }
 
     /**
-     * Scope a query to only include featured portfolios.
+     * Scope a query to only include featured services.
      */
     public function scopeFeatured($query)
     {

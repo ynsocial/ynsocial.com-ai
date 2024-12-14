@@ -5,24 +5,78 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Setting;
 use Illuminate\Http\Request;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\View\View;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Storage;
 
 class SettingController extends Controller
 {
-    public function index()
+    /**
+     * Display the settings page.
+     */
+    public function index(): View
     {
-        $settings = Setting::all()->groupBy('group');
+        $settings = $this->getSettings();
         return view('admin.settings.index', compact('settings'));
     }
 
-    public function update(Request $request)
+    /**
+     * Update the settings.
+     */
+    public function update(Request $request): RedirectResponse
     {
-        $request->validate([
-            'settings' => 'required|array',
-            'settings.*' => 'nullable',
+        $validated = $request->validate([
+            // General Settings
+            'site_name' => 'required|string|max:255',
+            'site_description' => 'required|string',
+            'site_keywords' => 'nullable|string',
+            'site_logo' => 'nullable|image|max:2048',
+            'site_favicon' => 'nullable|image|max:1024',
+            'contact_email' => 'required|email',
+            'contact_phone' => 'nullable|string|max:20',
+            'contact_address' => 'nullable|string',
+
+            // Social Media
+            'social_facebook' => 'nullable|url',
+            'social_twitter' => 'nullable|url',
+            'social_instagram' => 'nullable|url',
+            'social_linkedin' => 'nullable|url',
+
+            // Theme Settings
+            'theme_primary_color' => 'required|string|max:7',
+            'theme_secondary_color' => 'nullable|string|max:7',
+            'theme_font_family' => 'required|string|max:50',
+            'theme_enable_dark_mode' => 'boolean',
+
+            // Footer Settings
+            'footer_text' => 'nullable|string',
+            'footer_copyright' => 'required|string',
+
+            // Analytics
+            'google_analytics_id' => 'nullable|string',
+            'facebook_pixel_id' => 'nullable|string',
+
+            // API Keys
+            'google_maps_key' => 'nullable|string',
+            'recaptcha_site_key' => 'nullable|string',
+            'recaptcha_secret_key' => 'nullable|string',
         ]);
 
-        foreach ($request->settings as $key => $value) {
+        // Handle logo upload
+        if ($request->hasFile('site_logo')) {
+            $this->deleteOldFile('site_logo');
+            $validated['site_logo'] = $request->file('site_logo')->store('settings', 'public');
+        }
+
+        // Handle favicon upload
+        if ($request->hasFile('site_favicon')) {
+            $this->deleteOldFile('site_favicon');
+            $validated['site_favicon'] = $request->file('site_favicon')->store('settings', 'public');
+        }
+
+        // Update settings
+        foreach ($validated as $key => $value) {
             Setting::updateOrCreate(
                 ['key' => $key],
                 ['value' => $value]
@@ -30,127 +84,76 @@ class SettingController extends Controller
         }
 
         // Clear settings cache
-        Cache::forget('settings');
+        $this->clearCache();
 
-        return redirect()->route('admin.settings.index')
+        return redirect()
+            ->route('admin.settings.index')
             ->with('success', 'Settings updated successfully.');
     }
 
-    public function updateSocialMedia(Request $request)
+    /**
+     * Get all settings.
+     */
+    private function getSettings(): array
     {
-        $request->validate([
-            'facebook' => 'nullable|url',
-            'twitter' => 'nullable|url',
-            'instagram' => 'nullable|url',
-            'linkedin' => 'nullable|url',
-            'youtube' => 'nullable|url',
-        ]);
-
-        foreach ($request->all() as $key => $value) {
-            Setting::updateOrCreate(
-                ['key' => 'social_' . $key],
-                ['value' => $value, 'group' => 'social']
-            );
-        }
-
-        Cache::forget('settings');
-
-        return redirect()->route('admin.settings.index')
-            ->with('success', 'Social media settings updated successfully.');
+        return Cache::remember('site_settings', 3600, function () {
+            return Setting::pluck('value', 'key')->toArray();
+        });
     }
 
-    public function updateContact(Request $request)
+    /**
+     * Clear settings cache.
+     */
+    private function clearCache(): void
     {
-        $request->validate([
-            'address' => 'nullable|string',
-            'phone' => 'nullable|string',
-            'email' => 'nullable|email',
-            'business_hours' => 'nullable|string',
-            'google_maps_embed' => 'nullable|string',
-        ]);
-
-        foreach ($request->all() as $key => $value) {
-            Setting::updateOrCreate(
-                ['key' => 'contact_' . $key],
-                ['value' => $value, 'group' => 'contact']
-            );
-        }
-
-        Cache::forget('settings');
-
-        return redirect()->route('admin.settings.index')
-            ->with('success', 'Contact settings updated successfully.');
+        Cache::forget('site_settings');
     }
 
-    public function updateSeo(Request $request)
+    /**
+     * Delete old file if exists.
+     */
+    private function deleteOldFile(string $key): void
     {
-        $request->validate([
-            'site_title' => 'required|string|max:255',
-            'site_description' => 'nullable|string',
-            'google_analytics_id' => 'nullable|string',
-            'google_tag_manager_id' => 'nullable|string',
-            'facebook_pixel_id' => 'nullable|string',
-            'robots_txt' => 'nullable|string',
-        ]);
-
-        foreach ($request->all() as $key => $value) {
-            Setting::updateOrCreate(
-                ['key' => 'seo_' . $key],
-                ['value' => $value, 'group' => 'seo']
-            );
+        $oldFile = Setting::where('key', $key)->value('value');
+        if ($oldFile) {
+            Storage::disk('public')->delete($oldFile);
         }
-
-        Cache::forget('settings');
-
-        return redirect()->route('admin.settings.index')
-            ->with('success', 'SEO settings updated successfully.');
     }
 
-    public function updateEmail(Request $request)
+    /**
+     * Export settings.
+     */
+    public function export(): RedirectResponse
     {
-        $request->validate([
-            'smtp_host' => 'required|string',
-            'smtp_port' => 'required|integer',
-            'smtp_username' => 'required|string',
-            'smtp_password' => 'required|string',
-            'smtp_encryption' => 'required|in:tls,ssl',
-            'from_address' => 'required|email',
-            'from_name' => 'required|string',
-        ]);
-
-        foreach ($request->all() as $key => $value) {
-            Setting::updateOrCreate(
-                ['key' => 'email_' . $key],
-                ['value' => $value, 'group' => 'email']
-            );
-        }
-
-        Cache::forget('settings');
-
-        return redirect()->route('admin.settings.index')
-            ->with('success', 'Email settings updated successfully.');
+        $settings = Setting::all()->toArray();
+        $filename = 'settings-' . date('Y-m-d') . '.json';
+        
+        return response()->json($settings)
+            ->header('Content-Disposition', "attachment; filename={$filename}");
     }
 
-    public function updateApi(Request $request)
+    /**
+     * Import settings.
+     */
+    public function import(Request $request): RedirectResponse
     {
         $request->validate([
-            'google_maps_key' => 'nullable|string',
-            'recaptcha_site_key' => 'nullable|string',
-            'recaptcha_secret_key' => 'nullable|string',
-            'mailchimp_api_key' => 'nullable|string',
-            'mailchimp_list_id' => 'nullable|string',
+            'settings_file' => 'required|file|mimes:json|max:2048'
         ]);
 
-        foreach ($request->all() as $key => $value) {
+        $settings = json_decode(file_get_contents($request->file('settings_file')), true);
+
+        foreach ($settings as $setting) {
             Setting::updateOrCreate(
-                ['key' => 'api_' . $key],
-                ['value' => $value, 'group' => 'api']
+                ['key' => $setting['key']],
+                ['value' => $setting['value']]
             );
         }
 
-        Cache::forget('settings');
+        $this->clearCache();
 
-        return redirect()->route('admin.settings.index')
-            ->with('success', 'API settings updated successfully.');
+        return redirect()
+            ->route('admin.settings.index')
+            ->with('success', 'Settings imported successfully.');
     }
 } 

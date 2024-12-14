@@ -5,27 +5,34 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Newsletter extends Model
+class Team extends Model
 {
     use HasFactory;
 
     protected $fillable = [
+        'name',
+        'position',
+        'bio',
+        'image',
         'email',
+        'phone',
+        'facebook',
+        'twitter',
+        'linkedin',
+        'instagram',
         'active',
-        'unsubscribed_at',
+        'order',
     ];
 
     protected $casts = [
         'active' => 'boolean',
-        'unsubscribed_at' => 'datetime',
     ];
 
     /**
-     * Scope a query to only include active subscriptions.
+     * Scope a query to only include active team members.
      */
     public function scopeActive($query)
     {
-        return $query->where('active', true)
-            ->whereNull('unsubscribed_at');
+        return $query->where('active', true);
     }
-}
+} 
