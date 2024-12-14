@@ -1,15 +1,11 @@
 services:
   - type: web
-    name: ynsocial-backend
+    name: ynsocial
     env: php
-    plan: free
-    rootDirectory: ynsocial.com/httpdocs
+    rootDirectory: httpdocs
     buildCommand: |
-      curl -sS https://getcomposer.org/installer | php
-      mv composer.phar /usr/local/bin/composer
-      rm -f composer.lock
-      composer install --optimize-autoloader --no-dev
-      composer require jenssegers/mongodb:^3.9 --no-interaction --no-progress
+      composer update
+      composer install --no-dev --optimize-autoloader
       composer dump-autoload --optimize
       npm install
       npm run build
@@ -17,11 +13,14 @@ services:
       php artisan optimize
       php artisan storage:link
       chmod -R 775 storage bootstrap/cache
-    startCommand: "php artisan serve --host=0.0.0.0 --port=${PORT}"
+    startCommand: |
+      php artisan migrate --force
+      php artisan config:cache
+      php artisan route:cache
+      php artisan view:cache
+      php -S 0.0.0.0:$PORT -t public
     healthCheckPath: /health
     envVars:
-      - key: APP_NAME
-        value: "YN Social"
       - key: APP_ENV
         value: production
       - key: APP_DEBUG
@@ -36,22 +35,6 @@ services:
         value: mongodb+srv://ynsocial:Graf2021@ynsocial.mp9eb.mongodb.net/ynsocial?retryWrites=true&w=majority&appName=ynsocial
       - key: MONGODB_DATABASE
         value: ynsocial
-      - key: MAIL_MAILER
-        value: smtp
-      - key: MAIL_HOST
-        value: smtp.gmail.com
-      - key: MAIL_PORT
-        value: 587
-      - key: MAIL_USERNAME
-        value: noreply@ynsocial.com
-      - key: MAIL_PASSWORD
-        value: null
-      - key: MAIL_ENCRYPTION
-        value: tls
-      - key: MAIL_FROM_ADDRESS
-        value: noreply@ynsocial.com
-      - key: MAIL_FROM_NAME
-        value: "YN Social"
       - key: SESSION_DRIVER
         value: cookie
       - key: CACHE_DRIVER
@@ -60,6 +43,4 @@ services:
         value: sync
       - key: FILESYSTEM_DISK
         value: local
-      - key: SERVER_PORT
-        value: ${PORT}
-    autoDeploy: true
+    autoDeploy: true 
